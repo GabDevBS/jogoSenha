@@ -1,4 +1,4 @@
-let button, quebralinha, cont = 0, marcacao
+let button, quebralinha, cont = 0, marcacao, contLine = 1
 let tabuleiro = new Array(5)
 
 for (let i = 0; i < tabuleiro.length; i++) {
@@ -14,10 +14,10 @@ for (let i = 0; i < tabuleiro.length; i++) {
             button.setAttribute('id', 'bt' + i + "" + j)
             button.setAttribute('onclick', "marca(" + i + "," + j + ")")
         } else if (j == 5) {
-            button.setAttribute('id', 'btVirifica' + i)
-            button.setAttribute('onclick', "")
+            button.setAttribute('id', 'btVerifica' + i)
+            button.setAttribute('onclick', "verificaSequencia(" + i + ")")
         } else {
-            button.setAttribute('id', 'btResult', + i + "" + j)
+            button.setAttribute('id', 'btResult' + i + "" + j)
         } if (i > 0) {
             button.disabled = true
         }
@@ -27,13 +27,13 @@ for (let i = 0; i < tabuleiro.length; i++) {
         document.body.append(button)
     }
 }
-let h1 = document.createElement('h1')
-h1.setAttribute('id', 'resultado')
+let h1 = document.createElement("h1")
+h1.setAttribute('id', 'btResult')
 document.body.append(h1)
 
 function marca(linha, coluna) {
     if (coluna < 5) {
-        marcarCasa(("bt" + linha + "" + coluna))
+        marcarCasa("bt" + linha + "" + coluna)
     }
 }
 
@@ -63,4 +63,49 @@ function marcarCasa(nomeBotao) {
     }
     marcacao = cont
     cont++
+}
+
+function verificaSequencia(linha) {
+    if (document.getElementById("bt" + linha + "0").style.backgroundColor == "blue") {
+        document.getElementById("btResult" + linha + "6").style.backgroundColor = "green";
+    } else {
+        document.getElementById("btResult" + linha + "6").style.backgroundColor = "red";
+    }
+    document.getElementById("btResult" + linha + "6").disabled = true;
+
+    if (document.getElementById("bt" + linha + "1").style.backgroundColor == "purple") {
+        document.getElementById("btResult" + linha + "7").style.backgroundColor = "green";
+    } else {
+        document.getElementById("btResult" + linha + "7").style.backgroundColor = "red";
+    }
+    document.getElementById("btResult" + linha + "7").disabled = true;
+
+    if (document.getElementById("bt" + linha + "2").style.backgroundColor == "yellow") {
+        document.getElementById("btResult" + linha + "8").style.backgroundColor = "green";
+    } else {
+        document.getElementById("btResult" + linha + "8").style.backgroundColor = "red";
+    }
+    document.getElementById("btResult" + linha + "8").disabled = true;
+
+    if (document.getElementById("bt" + linha + "3").style.backgroundColor == "pink") {
+        document.getElementById("btResult" + linha + "9").style.backgroundColor = "green";
+    } else {
+        document.getElementById("btResult" + linha + "9").style.backgroundColor = "red";
+    }
+    document.getElementById("btResult" + linha + "9").disabled = true;
+
+    if (document.getElementById("bt" + linha + "4").style.backgroundColor == "purple") {
+        document.getElementById("btResult" + linha + "10").style.backgroundColor = "green";
+    } else {
+        document.getElementById("btResult" + linha + "10").style.backgroundColor = "red";
+    }
+    document.getElementById("btResult" + linha + "10").disabled = true;
+
+    for (let x = 0; x < 5; x++) {
+        document.getElementById("bt" + contLine + "" + x).disabled = false;
+    }
+
+    document.getElementById("btVerifica" + contLine).disabled = false;
+
+    contline++;
 }
